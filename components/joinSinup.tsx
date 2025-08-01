@@ -1,12 +1,10 @@
 "use client";
 
 import React, { useState } from "react";
-import { IconBrandGithub, IconBrandGoogle, IconBrandOnlyfans } from "@tabler/icons-react";
 import { Input } from "./ui/input";
 import { Label } from "./ui/label";
 import { cn } from "@/lib/utils";
 import { div } from "motion/react-m";
-import { signIn } from "next-auth/react";
 import axios from "axios";
 
 

@@ -37,7 +37,10 @@ const Image2Gallery = ({ images }: Props) => {
     const [imageState, setImageState] = useState(images);
 
 
-    
+    const imageList = imageState.map(({ public_id, content }) => ({
+        src: `https://res.cloudinary.com/dbpqs51lc/image/upload/w_1200,q_auto,f_auto/${public_id}`,
+        title: content,
+    }));
 
 
     const openLightbox = (index: number) => {
@@ -138,7 +141,7 @@ const Image2Gallery = ({ images }: Props) => {
                         }}
                         open={isOpen}
                         close={() => setIsOpen(false)}
-                        slides={imageState}
+                        slides={imageList}
                         index={currentIndex}
                     />
 

@@ -5,23 +5,22 @@ import { redirect } from 'next/navigation';
 import Image2Gallery from "./image2gallery"
 import { pool } from '@/lib/db';
 
-const page = async ({ params }: { params: { 'workspace-id': string } }) => {
-  
+const page = async ({ params }: { params: { workspaceId: string; userId: string } }) => {
   const session = await auth();
   if (!session) redirect("/login");
 
   const { workspaceId } = params;
 
   const memberFriendId = session.user.id;
-  console.log(`work-->${workspaceId}`)
-  console.log(`friend-->${memberFriendId}`)
+  // console.log(`work-->${workspaceId}`)
+  // console.log(`friend-->${memberFriendId}`)
 
   const result = await pool.query(
     "SELECT created_at ,content ,public_id FROM folder_items WHERE workspace_id = $1 AND shared_with = $2 AND type = 'image'",
     [workspaceId, memberFriendId]
   );
   const publicIds = result.rows;
-  console.log(publicIds)
+  // console.log(publicIds)
 
   return (
     <div className='flex flex-col items-center
