@@ -1,0 +1,56 @@
+import React from 'react'
+
+import { auth } from '@/auth';
+import { redirect } from 'next/navigation';
+import Image2Gallery from "./image2gallery"
+import { pool } from '@/lib/db';
+
+const page = async ({ params }: { params: { 'workspace-id': string } }) => {
+  
+  const session = await auth();
+  if (!session) redirect("/login");
+
+  const { workspaceId } = params;
+
+  const memberFriendId = session.user.id;
+  console.log(`work-->${workspaceId}`)
+  console.log(`friend-->${memberFriendId}`)
+
+  const result = await pool.query(
+    "SELECT created_at ,content ,public_id FROM folder_items WHERE workspace_id = $1 AND shared_with = $2 AND type = 'image'",
+    [workspaceId, memberFriendId]
+  );
+  const publicIds = result.rows;
+  console.log(publicIds)
+
+  return (
+    <div className='flex flex-col items-center
+    pt-[150] bg-black text-white h-[100vh]'>
+
+      
+<hr className='w-[90%] border-[1px] bg-amber-50' />
+
+
+
+      {/* IMAGE VIEWING COMPONENT */}
+      <h1 className="text-2xl font-bold text-center mt-6">User Uploaded Images :</h1>
+      
+      { publicIds.length === 0  ? (
+        <div className='flex flex-col items-center pt-[100] 
+        text-bold text-teal-100  text-4xl'>
+          <h1>NO Image Uploaded</h1>
+        </div>
+      ) : (
+        <div>
+          <Image2Gallery images={publicIds} />
+        </div>
+      )}
+      
+      
+
+
+    </div>
+  )
+}
+
+export default page
