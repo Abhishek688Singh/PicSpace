@@ -1,9 +1,7 @@
 
 
 import HeroSection from '@/components/joinHero'
-import { SessionProvider } from 'next-auth/react'
 import React from 'react'
-import Dashboard from './dashboard'
 import { JoinWorkspace } from '@/components/joinSinup'
 import { auth } from '@/auth'
 

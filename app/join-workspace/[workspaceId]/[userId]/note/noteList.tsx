@@ -22,7 +22,7 @@ export default function NoteList({ notes, workspaceId }: { notes: NoteType[], wo
         const parsedContent = JSON.parse(noteItem.content);
 
         return (
-          <div >
+          
             <Note
               key={noteItem.id}
               id={noteItem.id}
@@ -31,7 +31,7 @@ export default function NoteList({ notes, workspaceId }: { notes: NoteType[], wo
               content={parsedContent.content}
             />
 
-          </div>
+          
 
         );
       })}
