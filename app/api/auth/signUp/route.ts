@@ -1,0 +1,39 @@
+// app/api/auth/signup/route.ts (App Router)
+import { pool } from "@/lib/db";
+import { NextResponse } from "next/server";
+import bcrypt from "bcrypt";
+
+export async function POST(req: Request) {
+    const { name, email, password } = await req.json();
+    const saltRounds = 10;
+
+    if (!name || !email || !password) {
+        return NextResponse.json({ message: "Missing fields", status: 400 });
+    }
+
+    try {
+        const isUserPresent = await pool.query("SELECT * FROM users WHERE email = $1", [email]);
+        const exists = isUserPresent.rows;
+        if (exists.length != 0) { //user exist
+            return NextResponse.json({ message: "User already exists", status: 400 });
+
+        } else { //not exist
+            const hash = await bcrypt.hash(password, saltRounds);
+            try {
+                const result = await pool.query(`INSERT INTO users \
+                    (email, password_hash, name, user_image)
+                    VALUES ($1, $2, $3, $4)
+                    RETURNING *`,
+                    [email, hash, name, "/user.svg"]
+                );
+                const newUser = result.rows[0];
+                return NextResponse.json({ message: "User created", user: newUser, status: 201 });
+            } catch (error) {
+                return NextResponse.json({ message: "Error registering user!!", status: 500 });
+            }
+        }
+    } catch (err) {
+        return NextResponse.json({ message: "Error checking user!!", status: 500 });
+    }
+
+}

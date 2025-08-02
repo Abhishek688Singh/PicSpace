@@ -1,17 +1,45 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { IconBrandGithub, IconBrandGoogle, IconBrandOnlyfans } from "@tabler/icons-react";
 import { Input } from "./ui/input";
 import { Label } from "./ui/label";
 import { cn } from "@/lib/utils";
 import { div } from "motion/react-m";
 import { signIn } from "next-auth/react";
+import axios from "axios";
 
 export function S2ignupFormDemo() {
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    password: ""
+  });
+
+  function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
+    const id = event.target.id;
+    setFormData((prevValue) => {
+      return ({
+        ...prevValue,
+        [id]: event.target.value
+      });
+    })
+  }
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("Form submitted");
+    // console.log("Form submitted");
+    try {
+      const res = await axios.post("/api/auth/signup", formData);
+
+      if (res.data.status === 201) {
+        window.location.href = "/login"; // or auto-login here if desired
+      }
+    } catch (err: any) {
+      console.log(err)
+      alert("Sign-Up failed");
+    }
   };
 
   return (
@@ -27,8 +55,9 @@ export function S2ignupFormDemo() {
             <LabelInputContainer>
               <Label htmlFor="firstname" className="text-white text-sm">User name</Label>
               <Input
-                id="firstname"
-                placeholder="Tyler"
+                onChange={handleChange}
+                id="name"
+                placeholder="Your Name"
                 className="bg-neutral-800 text-white placeholder-gray-400 border border-neutral-700"
               />
             </LabelInputContainer>
@@ -45,9 +74,10 @@ export function S2ignupFormDemo() {
           <LabelInputContainer>
             <Label htmlFor="email" className="text-white text-sm">Email Address</Label>
             <Input
+              onChange={handleChange}
               id="email"
               type="email"
-              placeholder="projectmayhem@fc.com"
+              placeholder="asc@mail.com"
               className="bg-neutral-800 text-white placeholder-gray-400 border border-neutral-700"
             />
           </LabelInputContainer>
@@ -55,6 +85,7 @@ export function S2ignupFormDemo() {
           <LabelInputContainer>
             <Label htmlFor="password" className="text-white text-sm">Password</Label>
             <Input
+              onChange={handleChange}
               id="password"
               type="password"
               placeholder="••••••••"
