@@ -6,17 +6,18 @@ import { pool } from "./lib/db";
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
   providers: [Google,
-
     Credentials({
-      id: "credentials",
-      name: "Credentials",
       credentials: {
         email: { label: "Email", type: "email" },
         password: { label: "Password", type: "password" },
       },
       authorize: async (credentials) => {
+
         const email = credentials?.email?.toString() || "";
         const password = credentials?.password?.toString() || "";
+
+        console.log(email)
+        console.log(password)
 
         if (!email || !password) {
           throw new Error("Missing credentials");
@@ -29,7 +30,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
           throw new Error("No user found with that email");
         }
 
-         if (user.password_hash === "google") {
+         if (user.password_hash === "Google") {
           throw new Error("This account uses Google Sign-In. Please use Google to log in.");
         }
 

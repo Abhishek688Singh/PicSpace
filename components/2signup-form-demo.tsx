@@ -1,11 +1,9 @@
 "use client";
 
 import React, { useState } from "react";
-import { IconBrandGithub, IconBrandGoogle, IconBrandOnlyfans } from "@tabler/icons-react";
 import { Input } from "./ui/input";
 import { Label } from "./ui/label";
 import { cn } from "@/lib/utils";
-import { div } from "motion/react-m";
 import { signIn } from "next-auth/react";
 import axios from "axios";
 
@@ -31,10 +29,13 @@ export function S2ignupFormDemo() {
     e.preventDefault();
     // console.log("Form submitted");
     try {
-      const res = await axios.post("/api/auth/signup", formData);
+      const res = await axios.post("/api/signUp", formData);
 
       if (res.data.status === 201) {
         window.location.href = "/login"; // or auto-login here if desired
+      }else if (res.data.status === 400) {
+        alert("You are alrady registered. Try to login."); 
+        window.location.href = "/login";
       }
     } catch (err: any) {
       console.log(err)

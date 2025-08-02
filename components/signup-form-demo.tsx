@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { Input } from "./ui/input";
 import { Label } from "./ui/label";
 import { cn } from "@/lib/utils";
-import { signIn } from "next-auth/react";
+import { signIn } from "next-auth/react"
 
 export function SignupFormDemo() {
 
@@ -30,13 +30,14 @@ export function SignupFormDemo() {
       redirect: false,
       email: formData.email,
       password: formData.password,
+      // callbackUrl: "/dashboard"
     });
 
-    if (res?.ok && !res.error) {
-      window.location.href = "/dashbord";
-    } else {
-      console.log(res);
-      alert(res?.error ||"Invalid credentials or login failed.");
+    if (res?.error) {
+      // console.log(res)
+      alert("Wrong email,password! or You are not registered or May be registered with Google "); // ✅ Show exact backend error
+    } else if (res?.ok && !res.error) {
+      window.location.href = "/dashbord"; // ⬅️ redirect manually
     }
 
   };
