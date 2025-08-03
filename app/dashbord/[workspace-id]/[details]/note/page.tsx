@@ -8,6 +8,8 @@ import { pool } from "@/lib/db";
 import NoteList from "./noteList";
 import { Suspense } from "react";
 
+export const experimental_ppr = true;
+
 const Appi = async ({ params }: {
   params: { 'workspace-id': string; details: string };
 }) => {

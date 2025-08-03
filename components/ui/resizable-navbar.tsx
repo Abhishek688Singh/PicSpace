@@ -238,9 +238,8 @@ export const NavbarLogo = () => {
         alt="logo"
         width={50}
         height={50}
-        className="rounded-full"
       />
-      <span className="font-medium text-black text-[1px] dark:text-white">Pic-Space</span>
+      <span className="font-medium text-black text-[15px] dark:text-white">Pic-Space</span>
     </a>
   );
 };
