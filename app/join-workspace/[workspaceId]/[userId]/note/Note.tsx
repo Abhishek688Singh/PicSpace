@@ -4,7 +4,7 @@
 import React, { ReactNode } from "react";
 
 function Note(props: {
-  workspaceId: ReactNode;
+  workspaceId: string;
   title: string;
   content: string;
   id: string;
@@ -15,6 +15,7 @@ return (
   <div className="note">
     <h1>{props.title}</h1>
     <p>{props.content}</p>
+    <p>Created at: {new Date(props.workspaceId).toLocaleString()}</p>
     
   </div>
 );

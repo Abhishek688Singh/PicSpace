@@ -47,7 +47,7 @@ export default function NewWorkspace() {
     }
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-gray-900 px-4 py-12">
+        <div className="min-h-screen flex items-center justify-center  px-4 py-12">
             <div className="max-w-4xl w-full bg-gray-800 rounded-2xl shadow-lg overflow-hidden grid grid-cols-1 md:grid-cols-2">
 
                 {/* Left Side: Form */}
@@ -67,7 +67,7 @@ export default function NewWorkspace() {
 
                         <div>
                             <label htmlFor="name" className="block text-sm font-medium text-gray-300">
-                                Name of Pic-Space
+                                Name of Pic-Space <br /><span className="text-[10px]">This name will be visible to everyone in your space.</span>
                             </label>
                             <input
                                 onChange={handleChange}
@@ -80,7 +80,7 @@ export default function NewWorkspace() {
                         </div>
                         <div>
                             <label htmlFor="invite_code" className="block text-sm font-medium text-gray-300">
-                                Create Invite Code for Pic-Space
+                                Create Invite Code for Pic-Space : <br /><span className="text-[10px]">All team members will join your space through this invite code.</span>
                             </label>
                             <input
                                 onChange={handleChange}

@@ -53,7 +53,7 @@ const ImageGallery = ({ images }: Props) => {
         setIsOpen(true);
     };
 
-
+    // console.log(imageList);
     return (
         <>
 
@@ -146,7 +146,7 @@ const ImageGallery = ({ images }: Props) => {
                         }}
                         open={isOpen}
                         close={() => setIsOpen(false)}
-                        slides={imageState}
+                        slides={imageList}
                         index={currentIndex}
                     />
 

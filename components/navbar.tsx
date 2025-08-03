@@ -128,7 +128,7 @@ export function NavbarDemo() {
 
 const DummyContent = () => {
   return (
-    <div className="container mx-auto bg-transparent">
+    <div className="container mx-auto ">
 
 
 

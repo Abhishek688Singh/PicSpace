@@ -43,11 +43,11 @@ export function SignupFormDemo() {
   };
 
   return (
-    <div className="bg-[#0f0f0f] h-[100vh] flex flex-row items-center">
+    <div className=" h-[100vh] flex flex-row items-center">
       <div style={{ border: "3px solid white" }} className="mx-auto w-full max-w-md rounded-xl bg-[#0f0f0f] p-6 md:p-8 shadow-lg">
-        <h2 className="text-2xl font-bold text-white">Welcome to Aceternity</h2>
+        <h2 className="text-2xl font-bold text-white">Welcome to Pic-Space</h2>
         <p className="mt-2 text-sm text-gray-400">
-          Login to aceternity if you can because we don't have a login flow yet
+          Log in to Pic-Space to manage your space and share your work privately.
         </p>
 
         <form className="mt-8 space-y-5" onSubmit={handleSubmit}>
@@ -76,7 +76,7 @@ export function SignupFormDemo() {
               onChange={handleChange}
               id="email"
               type="email"
-              placeholder="projectmayhem@fc.com"
+              placeholder="asc@mail.com"
               className="bg-neutral-800 text-white placeholder-gray-400 border border-neutral-700"
             />
           </LabelInputContainer>

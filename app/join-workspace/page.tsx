@@ -11,12 +11,12 @@ const page = async () => {
     return (
         <div>
             <HeroSection />
-
+            <hr />
             {session ? (<>
                 <JoinWorkspace sessionDetail={session} />
             </>
             ) : (<>
-                <p>You are not authorized to view this page! Plese login to view this page</p>
+                <p className='text-amber-50 text-2xl text-center py-4'>Plese login to join a Pic-Space</p>
             </>
             )}
 

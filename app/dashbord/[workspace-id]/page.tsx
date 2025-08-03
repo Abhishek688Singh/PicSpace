@@ -49,13 +49,14 @@ export default async function userPage({ params }: {
 
   return (
     <>
-      <div className='bg-black h-[100vh]'>
+      <div className='h-[100vh]'>
         {spaceMembers.length === 0 ? (
           <div className='flex flex-col items-center text-5xl pt-[150] text-amber-100'>
-            <h1> There are no members in your Pic-Space!!</h1>
+            <h1 className='pb-8'> There are no members in your Pic-Space!!</h1>
           </div>
         ) : (
-          <div>
+          <div className='pt-9'>
+            <p className='text-2xl text-amber-50 text-center p-6'>Members in your Pic-Space :</p>
             <ExpandableCardDemo
               cards={spaceMembers.map(space => ({
                 id: space.membership_id,  // or space.workspace_id if you're showing workspace cards
@@ -72,7 +73,7 @@ export default async function userPage({ params }: {
           </div>
         )}
 
-        <CreateNewUser wSpaceId={workspaceId} />
+        {/* <CreateNewUser wSpaceId={workspaceId} /> */}
       </div>
 
     </>

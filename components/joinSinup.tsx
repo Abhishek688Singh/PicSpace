@@ -35,7 +35,7 @@ export function JoinWorkspace({ sessionDetail }: SessionType) {
 
     async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
-        console.log(formDetail);
+        // console.log(formDetail);
         try {
             const result = await axios.post("/api/joinWorkspace", {
                 workspaceId: formDetail.workspaceId,
@@ -44,13 +44,16 @@ export function JoinWorkspace({ sessionDetail }: SessionType) {
                 friend_id: sessionDetail.user.id,
 
             });
-
-            if (result.status === 201) {
+            // console.log(result)
+            if (result.data.status === 403) {
+               alert("You are the admin of this space. You can't join it as a member.")
+            }
+            else if (result.status === 201) {
                 window.location.href = `/join-workspace/${formDetail.workspaceId}/`; // ❗ Use window.location in client components (not `redirect`)
             }
         } catch (err) {
             console.log(err);
-            alert(`Error joining Pic-Space (Invite code or id is not invalid): ${err}`);
+            alert(`Error joining Pic-Space (Invite code or id is not invalid)`);
         }
     }
 
@@ -59,11 +62,9 @@ export function JoinWorkspace({ sessionDetail }: SessionType) {
     return (
         <div className="bg-[#0f0f0f] h-[100vh] flex flex-row items-center">
             <div style={{ border: "3px solid white" }} className="mx-auto w-full max-w-md rounded-xl bg-[#0f0f0f] p-6 md:p-8  shadow-lg" >
-                <h2 className="text-2xl font-bold text-white">Welcome to Aceternity</h2>
-                <p className="mt-2 text-sm text-gray-400">
-                    Login to aceternity if you can because we don't have a login flow yet
-                </p>
-
+                <h2 className="text-2xl font-bold text-white">Join a Pic-Space :</h2>
+                <h3 className="text-xl  text-amber-100">To join a Pic-Space, please ask your space admin for the PicSpace ID and the invite code, then enter them below.</h3>
+                
                 <form className="mt-8 space-y-5" onSubmit={handleSubmit}>
                     <div className="flex flex-col gap-4 md:flex-row">
                         <LabelInputContainer>

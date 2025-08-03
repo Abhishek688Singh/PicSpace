@@ -10,7 +10,7 @@ type Card = {
   about_space: string;
   src: string;
   description: string;
-  workspaceId : string;
+  workspaceId: string;
   ctaText: string;
   ctaLink: string;
   content: string | (() => React.ReactNode);
@@ -85,7 +85,7 @@ export default function ExpandableCardDemo({ cards }: { cards: Card[] }) {
                     >
                       {active.name}
                     </motion.h3>
-                    
+
                     <motion.p
                       layoutId={`description-${active.description}-${id}`}
                       className="text-neutral-400 dark:text-neutral-600 text-base"
@@ -131,12 +131,12 @@ export default function ExpandableCardDemo({ cards }: { cards: Card[] }) {
           </div>
         )}
       </AnimatePresence>
-
+{/* ---------------------------------------------USE CARD.ID TO DELETE A CARD */}
       <ul className="max-w-2xl mx-auto w-full grid grid-cols-1 md:grid-cols-2 gap-4">
-        {cards.map((card) => (
+        {cards.map((card ,idx) => (
           <motion.div
-            layoutId={`card-${card.name}-${id}`}
-            key={card.id}
+            layoutId={`card-${card.name}-${idx}`}
+            key={idx}
             onClick={() => setActive(card)}
             className="p-4 border-1 border-white hover:bg-neutral-800 dark:hover:bg-neutral-100 rounded-xl cursor-pointer"
           >
@@ -162,7 +162,7 @@ export default function ExpandableCardDemo({ cards }: { cards: Card[] }) {
                 >
                   {card.id}
                 </motion.p>
-                
+
                 <motion.p
                   layoutId={`description-${card.description}-${id}`}
                   className="text-neutral-400 dark:text-neutral-700 text-base"
@@ -173,6 +173,7 @@ export default function ExpandableCardDemo({ cards }: { cards: Card[] }) {
             </div>
           </motion.div>
         ))}
+
       </ul>
     </>
   );

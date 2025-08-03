@@ -5,6 +5,24 @@ import { NextRequest, NextResponse } from "next/server";
 export async function POST(req: NextRequest) {
     const { name, enterInvite_code, workspaceId, friend_id } = await (req.json());
     // console.log(req);
+    //let yourself as a member -- then friend_id is your "user id" which is
+    //sended by frontend
+    //now you have to fetch all data from 'workspace' table and check that
+    //is "admin_id" from "workspace" and "friend_id" are not equal .
+    //if equal send 403
+
+    try {
+        const workspaceData = await pool.query("SELECT * FROM workspace WHERE id = $1", [workspaceId]);
+        console.log(workspaceData);
+        const data = workspaceData.rows[0];
+        if (data.admin_id === friend_id) {
+            return NextResponse.json({ message: 'You are the admin, you cant join your space', status: 403 });
+        }
+    } catch (err) {
+
+    }
+
+
 
     if (!name || !enterInvite_code || !workspaceId || !friend_id) {
         return NextResponse.json({ message: 'Missing credentials' }, { status: 400 });
@@ -24,8 +42,8 @@ export async function POST(req: NextRequest) {
             } catch (error) {
                 return NextResponse.json({ message: 'Error joining pic-space !!' }, { status: 500 });
             }
-        }else{
-            return NextResponse.json({message:"Invalid credientials" , status:400})
+        } else {
+            return NextResponse.json({ message: "Invalid credientials", status: 400 })
         }
 
         //   console.log(`friendId-->${friend_id}`)

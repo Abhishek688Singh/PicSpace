@@ -15,15 +15,15 @@ const page = async ({ params }: {
     if (!session) redirect("/login")
         
     return (
-        <div className='bg-black h-[100vh]'>
+        <div className=' h-[100vh]'>
             <div className='flex flex-row gap-20 items-center
              justify-center pt-[150] flex-wrap'>
 
                 <GlowCard>
                     <Link href={`${memberFriendId}/note`}>
                         <div className="text-white">
-                            <h3 className="text-4xl font-bold mb-2">Notes</h3>
-                            <p className="text-gray-300">Tap to view all the Notes.</p>
+                            <h3 className="text-4xl font-bold mb-2">Ideas</h3>
+                            <p className="text-gray-300">Tap to view all the Ideas and Plans.</p>
                         </div></Link>
                 </GlowCard>
 

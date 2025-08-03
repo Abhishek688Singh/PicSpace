@@ -8,7 +8,7 @@ import Link from "next/link";
 export function CanvasRevealEffectDemo() {
   return (
     <>
-      <div className="py-20 flex flex-col lg:flex-row items-center justify-center bg-black dark:bg-white w-full gap-4 mx-auto px-8">
+      <div className="py-20 flex flex-col lg:flex-row items-center justify-center  dark:bg-white w-full gap-4 mx-auto px-8">
         
         <Card title="Tap to create new Pic-Space" icon={<h1 className="text-4xl text-white font-bold ">Create Pic-space</h1>}>
           <Link href={"/create-workspace/new-workspace"}>
@@ -77,23 +77,7 @@ const Card = ({
   );
 };
 
-const AceternityIcon = () => {
-  return (
-    <>
-    <h3>hi</h3>
-      <path
-        d="M8 8.05571C8 8.05571 54.9009 18.1782 57.8687 30.062C60.8365 41.9458 9.05432 57.4696 9.05432 57.4696"
-        stroke="currentColor"
-        strokeWidth="15"
-        strokeMiterlimit="3.86874"
-        strokeLinecap="round"
-        style={{ mixBlendMode: "darken" }}
-      />
-    </>
-        
-    
-  );
-};
+
 
 export const Icon = ({ className, ...rest }: any) => {
   return (

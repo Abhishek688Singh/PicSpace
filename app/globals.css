@@ -1,6 +1,12 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+body{
+   background-color: #121111;;
+background-image: url("https://www.transparenttextures.com/patterns/cubes.png");
+}
+
+
 @custom-variant dark (&:is(.dark *));
 
 @import "tailwindcss";

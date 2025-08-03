@@ -19,10 +19,11 @@ const page = async ({ params }: {
     [workspaceId, memberFriendId]
   );
   const publicIds = result.rows;
+  // console.log(publicIds)
 
   return (
     <div className='flex flex-col items-center
-    pt-[150] bg-black text-white h-[100vh]'>
+    pt-[150]  text-white h-[100vh]'>
 
       {/* image uploading component */}
       <Images workspaceId={workspaceId} memberFriendId={memberFriendId} />
@@ -32,15 +33,16 @@ const page = async ({ params }: {
 
 
       {/* IMAGE VIEWING COMPONENT */}
-      <h1 className="text-2xl font-bold text-center mt-6">User Uploaded Images :</h1>
+      <h1 className="text-2xl font-bold text-center mt-6">Shared by Me :</h1>
       
       { publicIds.length === 0  ? (
         <div className='flex flex-col items-center pt-[100] 
         text-bold text-teal-100  text-4xl'>
-          <h1>NO Image Uploaded</h1>
+          <h1>NO Image Shared</h1>
         </div>
       ) : (
         <div>
+          
           <ImageGallery images={publicIds} />
         </div>
       )}

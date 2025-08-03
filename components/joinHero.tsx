@@ -79,64 +79,18 @@ const HeroSection: React.FC = () => {
   }, [isMenuOpen]);
 
   return (
-    <div className="bg-gray-50 dark:bg-black font-sans text-gray-800 dark:text-gray-200 w-full">
+    <div className=" font-sans text-white w-full">
       <div className="w-full">
-        <header className="py-6 px-4 sm:px-6 lg:px-8">
-          <nav className="flex items-center justify-between mx-auto">
         
-
-            
-
-            <div className="lg:hidden">
-              <button
-                onClick={() => setIsMenuOpen(true)}
-                className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
-              >
-                <MenuIcon className="h-6 w-6" />
-              </button>
-            </div>
-          </nav>
-        </header>
-
-        <div
-          className={`lg:hidden fixed inset-0 z-40 transition-opacity duration-300 ${isMenuOpen ? "opacity-100" : "opacity-0 pointer-events-none"}`}
-        >
-          <div
-            className="absolute inset-0 bg-black/60 dark:bg-black/80"
-            onClick={() => setIsMenuOpen(false)}
-          ></div>
-
-          <div
-            className={`relative z-50 bg-white dark:bg-gray-900 h-full w-4/5 max-w-sm ml-auto p-6 flex flex-col transition-transform duration-300 ease-in-out ${isMenuOpen ? "translate-x-0" : "translate-x-full"}`}
-          >
-            <div className="flex items-center justify-between mb-8">
-              <span className="font-bold text-2xl text-gray-900 dark:text-white">
-                Menu
-              </span>
-              <button
-                onClick={() => setIsMenuOpen(false)}
-                className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
-              >
-                <CloseIcon className="h-6 w-6" />
-              </button>
-            </div>
-            <nav className="flex flex-col items-start gap-5">
-              
-             
-            </nav>
-          </div>
-        </div>
-
         <main className="relative flex-1 flex items-center justify-center text-center w-full">
           <div className="relative flex flex-col items-center justify-center py-10 sm:py-16 px-4 max-w-5xl mx-auto">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 dark:text-white leading-tight max-w-4xl">
-              Where your{" "}
-              <span className="text-indigo-600 dark:text-indigo-400">data</span>{" "}
-              turns into software with a click
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-amber-100 leading-tight max-w-4xl">
+              Join a Pic-Space. <br /> <br /> Enter your  {" "}
+              <span className="text-indigo-600 dark:text-indigo-400">invite code</span>{" "}
+              to access exclusive workspaces and collaborate with your team.
             </h1>
             <p className="mt-6 text-lg sm:text-xl text-gray-600 dark:text-gray-300 max-w-2xl">
-              Build custom portals, CRMs, and tools effortlessly. From concept
-              to launch in minutes, not months.
+              Secure, organized, and built for photographers like you.
             </p>
             {/* <button className="mt-8 flex items-center gap-3 bg-gray-900 dark:bg-white text-white dark:text-gray-900 font-semibold px-6 py-3 rounded-lg hover:bg-gray-800 dark:hover:bg-gray-100 transition-all shadow-md transform hover:scale-105">
               <PlayIcon className="h-6 w-6" />

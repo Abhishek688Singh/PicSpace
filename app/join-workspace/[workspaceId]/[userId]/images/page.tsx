@@ -24,7 +24,7 @@ const page = async ({ params }: { params: { workspaceId: string; userId: string 
 
   return (
     <div className='flex flex-col items-center
-    pt-[150] bg-black text-white h-[100vh]'>
+    pt-[150]  text-white h-[100vh]'>
 
       
 <hr className='w-[90%] border-[1px] bg-amber-50' />
@@ -32,12 +32,12 @@ const page = async ({ params }: { params: { workspaceId: string; userId: string 
 
 
       {/* IMAGE VIEWING COMPONENT */}
-      <h1 className="text-2xl font-bold text-center mt-6">User Uploaded Images :</h1>
+      <h1 className="text-2xl font-bold text-center mt-6">Images shared by the admin:</h1>
       
       { publicIds.length === 0  ? (
         <div className='flex flex-col items-center pt-[100] 
         text-bold text-teal-100  text-4xl'>
-          <h1>NO Image Uploaded</h1>
+          <h1>No images have been shared by your admin yet.</h1>
         </div>
       ) : (
         <div>

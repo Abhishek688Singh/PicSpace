@@ -27,7 +27,7 @@ const Appi = async ({ params }: { params: { 'workspace-id': string } }) => {
   return (
     <>
       <div className="flex flex-col items-center h-[100vh] pt-[100px] ">
-
+        <p className="text-amber-50 text-2xl text-center">Here are all the ideas and plans shared by your space admin.</p>
         <div className="flex flex-col sm:flex-row flex-wrap items-center">
           <Suspense fallback={"loading..."}>
             <NoteList notes={notes}

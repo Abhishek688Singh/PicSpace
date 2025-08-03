@@ -12,7 +12,7 @@ type NoteType = {
 export default function NoteList({ notes, workspaceId }: { notes: NoteType[], workspaceId: string }
 ) {
   if (notes.length === 0) {
-    return <h1>No Notes available</h1>;
+    return <h1 className="text-xl p-5 text-amber-50">Looks like your space is waiting for its first idea. Share one now!</h1>;
   }
 
   return (
