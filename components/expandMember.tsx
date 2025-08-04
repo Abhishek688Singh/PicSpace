@@ -134,6 +134,7 @@ export default function ExpandableCardDemo({ cards }: ExpandableCardDemoProps) {
               <div className="flex flex-row gap-10 mx-3 ">
                 {/* REMOVE MEMBER BUTTON */}
 
+
                 {(active !== null && (active.status !== 'left' && active.status !== 'removed')) && <button
                   className=" px-4 py-2 text-sm my-4 relative bg-gradient-to-br from-gray-800 to-black text-white px-3 py-1 rounded-lg border border-gray-500 shadow-md hover:scale-105 transform transition-all duration-200 hover:shadow-red-500/50 text-sm z-10"
                   onClick={async () => {
