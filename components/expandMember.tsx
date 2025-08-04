@@ -3,7 +3,9 @@
 import { useState, useId, useRef, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useOutsideClick } from "@/hooks/use-outside-click";
- // or your version
+import axios from "axios";
+import { useSession } from "next-auth/react";
+// or your version
 
 type CardProps = {
   id: string;
@@ -14,6 +16,8 @@ type CardProps = {
   ctaText: string;
   ctaLink: string;
   content: string;
+  status :string;
+  workspaceId:string
 };
 
 type ExpandableCardDemoProps = {
@@ -24,6 +28,8 @@ export default function ExpandableCardDemo({ cards }: ExpandableCardDemoProps) {
   const [active, setActive] = useState<CardProps | boolean | null>(null);
   const ref = useRef<HTMLDivElement>(null);
   const id = useId();
+
+  const { data: session } = useSession()
 
   useEffect(() => {
     function onKeyDown(event: KeyboardEvent) {
@@ -38,6 +44,8 @@ export default function ExpandableCardDemo({ cards }: ExpandableCardDemoProps) {
   }, [active]);
 
   useOutsideClick(ref, () => setActive(null));
+  console.log(active)
+
 
   return (
     <>
@@ -117,12 +125,84 @@ export default function ExpandableCardDemo({ cards }: ExpandableCardDemoProps) {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
-                    className="text-neutral-400 dark:text-neutral-600 text-xs md:text-sm lg:text-base h-40 md:h-fit pb-10 flex flex-col items-start gap-4 overflow-auto"
+                    className="text-neutral-400 line-clamp-5 dark:text-neutral-600 text-xs md:text-sm lg:text-base h-20 md:h-fit pb-10 flex flex-col items-start gap-4 overflow-auto"
                   >
                     {active.content}
                   </motion.div>
                 </div>
               </div>
+              <div className="flex flex-row gap-10 mx-3 ">
+                {/* REMOVE MEMBER BUTTON */}
+
+                {(active !== null && (active.status !== 'left' && active.status !== 'removed')) && <button
+                  className=" px-4 py-2 text-sm my-4 relative bg-gradient-to-br from-gray-800 to-black text-white px-3 py-1 rounded-lg border border-gray-500 shadow-md hover:scale-105 transform transition-all duration-200 hover:shadow-red-500/50 text-sm z-10"
+                  onClick={async () => {
+                    const confirmed = window.confirm("Are you sure you want to remove this member from your Pic-Space? This will not delete the data shared by you.");
+                    if (!confirmed) return;
+
+                    //   alert("Deleting Pic-Space... It may take few time.")
+
+                    // console.log(`Left space with workspace id: ${active.id}}`);
+
+                    try {
+                      const result = await axios.post("/api/leftWorkspace", {
+                        workspaceId : active.workspaceId,
+                        userId: session?.user.id,
+                        friendId : active.id
+                      });
+
+                      // console.log(result);
+                      if (result.data.status === 204) {
+                        alert("removed sucessfully");
+                        window.location.reload();
+                      } else {
+                        // console.log(result.data);
+                        alert("Error !!");
+                      }
+                    } catch (err) {
+                      // console.log(err);
+                    }
+                  }}
+                >
+                  Remove this member
+                </button>}
+
+                {/* DELETE MEMBER BUTTON */}
+
+                {active !== null && <button
+                  className=" px-4 py-2 text-sm my-4 relative bg-gradient-to-br from-gray-800 to-black text-white px-3 py-1 rounded-lg border border-gray-500 shadow-md hover:scale-105 transform transition-all duration-200 hover:shadow-red-500/50 text-sm z-10"
+                  onClick={async () => {
+                    const confirmed = window.confirm("Are you sure you want to leave this Pic-Space? This will not delete the data shared by your admin.");
+                    if (!confirmed) return;
+
+                    //   alert("Deleting Pic-Space... It may take few time.")
+
+                    console.log(`Left space with workspace id: ${card.id}}`);
+
+                    try {
+                      const result = await axios.post("/api/leftWorkspace", {
+                        workspaceId: card.id,
+                        userId: session?.user.id
+                      });
+
+                      console.log(result);
+                      if (result.data.status === 204) {
+                        alert("Deleted sucessfully");
+                        window.location.reload();
+                      } else {
+                        console.log(result.data);
+                        alert("Error !!");
+                      }
+                    } catch (err) {
+                      console.log(err);
+                    }
+                  }}
+                >
+                  Delete this member
+                </button>}
+
+              </div>
+
             </motion.div>
           </div>
         ) : null}
@@ -136,7 +216,7 @@ export default function ExpandableCardDemo({ cards }: ExpandableCardDemoProps) {
             onClick={() => setActive(card)}
             className="p-4 flex flex-col md:flex-row justify-between items-center
              hover:bg-neutral-800 dark:hover:bg-neutral-50 rounded-xl cursor-pointer
-             border-[1px] border-amber-100"
+             border-[1px] border-amber-100 mb-5"
           >
             <div className="flex gap-4 flex-col md:flex-row">
               <motion.div layoutId={`image-${card.name}-${id}`}>
@@ -166,12 +246,14 @@ export default function ExpandableCardDemo({ cards }: ExpandableCardDemoProps) {
                 </p>
               </div>
             </div>
+
             <motion.button
               layoutId={`button-${card.name}-${id}`}
               className="px-4 py-2 text-sm rounded-full font-bold bg-neutral-800 dark:bg-gray-100 hover:bg-green-500 hover:text-white text-white dark:text-black mt-4 md:mt-0"
             >
               {card.ctaText}
             </motion.button>
+
           </motion.div>
         ))}
       </ul>

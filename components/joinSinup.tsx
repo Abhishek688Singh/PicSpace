@@ -44,11 +44,11 @@ export function JoinWorkspace({ sessionDetail }: SessionType) {
                 friend_id: sessionDetail.user.id,
 
             });
-            // console.log(result)
+            console.log(result)
             if (result.data.status === 403) {
                alert("You are the admin of this space. You can't join it as a member.")
             }
-            else if (result.status === 201) {
+            else if (result.data.status === 201) {
                 window.location.href = `/join-workspace/${formDetail.workspaceId}/`; // ❗ Use window.location in client components (not `redirect`)
             }
         } catch (err) {

@@ -22,6 +22,9 @@ declare module "next-auth" {
 }
 
 type Workspace = {
+  left_at : string;
+  status :string;
+  workspace_id: any;
   user_name: any;
   role: any;
   user_image: string;

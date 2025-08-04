@@ -17,12 +17,13 @@ type Card = {
   content: string | (() => React.ReactNode);
 };
 
-export default function ExpandableCardDemo({ cards }: { cards: Card[] }) {
+export default function JoinedSpace({ cards }: { cards: Card[] }) {
   const [active, setActive] = useState<Card | boolean | null>(null);
   const id = useId();
   const ref = useRef<HTMLDivElement>(null);
 
   const { data: session } = useSession()
+//   if(!session) window.location.href = "/login"
 
   useEffect(() => {
     function onKeyDown(event: KeyboardEvent) {
@@ -177,38 +178,34 @@ export default function ExpandableCardDemo({ cards }: { cards: Card[] }) {
               <button
                 className="relative bg-gradient-to-br from-gray-800 to-black text-white px-3 py-1 rounded-lg border border-gray-500 shadow-md hover:scale-105 transform transition-all duration-200 hover:shadow-red-500/50 text-sm z-10"
                 onClick={async () => {
-                  const confirmed = window.confirm("Are you sure you want to delete this Pic-Space? This will delete all the data available in this Space.");
+                  const confirmed = window.confirm("Are you sure you want to leave this Pic-Space? This will not delete the data shared by your admin.");
                   if (!confirmed) return;
-                  const reConfirmed = window.confirm("Are you really want to delete this Pic-Space? This can't be undone!");
-                  if (!reConfirmed) return;
-                  alert("Deleting Pic-Space... It may take few time.")
-                  
-                  const Uid = session?.user.id;
 
-
-                  console.log(`Delete space with workspace id: ${card.id}}`);
+                //   alert("Deleting Pic-Space... It may take few time.")
+            
+                  console.log(`Left space with workspace id: ${card.id}}`);
 
                   try {
-                    const result = await axios.post("/api/deleteWorkspace", {
+                    const result = await axios.post("/api/leftWorkspace", {
                       workspaceId: card.id,
-                      userId:Uid
+                      userId:session?.user.id,
+                      friendId : null
                     });
 
                     console.log(result);
                     if (result.data.status === 204) {
                       alert("Deleted sucessfully");
                       window.location.reload();
-                    } if (result.data.status === 403) {
-                      alert("Only admin delete a Pic-Space. You are not allowed to perform this task.");
                     }else {
                       console.log(result.data);
+                      alert("Error !!");
                     }
                   } catch (err) {
                     console.log(err);
                   }
                 }}
               >
-                Delete
+                Leave Pic-Space
               </button>
             </div>
           </motion.div>

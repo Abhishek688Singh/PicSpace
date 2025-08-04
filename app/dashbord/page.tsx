@@ -1,9 +1,11 @@
 
 import { auth } from '@/auth';
 import ExpandableCardDemo from '@/components/expandable-card-demo-grid';
+import JoinedSpace from "@/components/joinedSpace";
 import ShareInstructions from '@/components/ShareInstructions';
 import { pool } from '@/lib/db';
 import { Workspace } from '@/types/next-auth';
+import { SessionProvider } from "next-auth/react"
 import { redirect } from 'next/navigation';
 import { QueryResult } from 'pg';
 import React from 'react'
@@ -24,7 +26,7 @@ const dashboard = async () => {
     );
 // console.log(session.user.id);
     const result2 = await pool.query("SELECT * FROM workspace_members \
-      WHERE user_id = $1",[session.user.id]);
+      WHERE user_id = $1 AND status ='active'",[session.user.id]);
     // console.log(result.rows);
     spaceData = result.rows;
     joinData = result2.rows;
@@ -49,6 +51,7 @@ const dashboard = async () => {
             <h1 className='text-white text3xl'>NO Pic-Space available!!<br />You have to create first.</h1>
           </>) : (
           <>
+          <SessionProvider>
             <ExpandableCardDemo
               cards={spaceData.map(space => ({
                 id: space.id,
@@ -62,6 +65,7 @@ const dashboard = async () => {
                 content: `Created at: ${new Date(space.created_at).toLocaleString()}`
               }))}
             />
+            </SessionProvider>
           </>)}
       </div>
 
@@ -70,15 +74,14 @@ const dashboard = async () => {
       <div className='flex flex-col items-center pb-10'>
         <h3 className='text-amber-50 pt-[150] text-4xl pb-[10]'>Joined Pic-Spaces:</h3>
 
-        {/* ACTIVE WORK-SPACE */}
-
         {joinData.length === 0 ? (
           <>
             <h1 className='text-white text3xl'>You Haven't joined any Pic-Space !!</h1>
             
           </>) : (
           <>
-            <ExpandableCardDemo
+          <SessionProvider>
+            <JoinedSpace 
               cards={joinData.map((space ,idx:number) => ({
                 id: space.workspace_id,
                 name: space.name,
@@ -90,7 +93,7 @@ const dashboard = async () => {
                 ctaLink: `/join-workspace/${space.workspace_id}`,
                 content: `Pic-Space : ${idx+1}`
               }))}
-            />
+            /></SessionProvider>
           </>)}
 
       </div>
