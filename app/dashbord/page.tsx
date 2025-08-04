@@ -35,7 +35,6 @@ const dashboard = async () => {
     console.log(error);
     alert("Error! Loading Pic-Space");
   }
-
   
   return (
     <div >
