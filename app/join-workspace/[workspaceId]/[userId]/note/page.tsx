@@ -4,13 +4,14 @@ import { pool } from "@/lib/db";
 import { Suspense } from "react";
 import NoteList from "./noteList";
 
-const Appi = async ({ params }: { params: { 'workspace-id': string } }) => {
+const Appi = async ({ params }: { params: { 'workspaceId': string } }) => {
   const session = await auth();
   if (!session) redirect("/login");
 
-  const workspaceId = params["workspace-id"];
+  const workspaceId = params["workspaceId"];
   const memberFriendId = session.user.id;
-
+// console.log(workspaceId)
+// console.log(memberFriendId)
   // 🔒 ACCESS CHECK (safe, outside try/catch)
   const accessResult = await pool.query(
     "SELECT status FROM workspace_members WHERE workspace_id = $1 AND user_id = $2",

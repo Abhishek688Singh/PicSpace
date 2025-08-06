@@ -44,7 +44,7 @@ export default function ExpandableCardDemo({ cards }: ExpandableCardDemoProps) {
   }, [active]);
 
   useOutsideClick(ref, () => setActive(null));
-  console.log(active)
+  // console.log(active)
 
 
   return (
@@ -172,20 +172,24 @@ export default function ExpandableCardDemo({ cards }: ExpandableCardDemoProps) {
                 {active !== null && <button
                   className=" px-4 py-2 text-sm my-4 relative bg-gradient-to-br from-gray-800 to-black text-white px-3 py-1 rounded-lg border border-gray-500 shadow-md hover:scale-105 transform transition-all duration-200 hover:shadow-red-500/50 text-sm z-10"
                   onClick={async () => {
-                    const confirmed = window.confirm("Are you sure you want to leave this Pic-Space? This will not delete the data shared by your admin.");
+                    const confirmed = window.confirm("Are you sure you want to delete this member in your Pic-Space? This will delete!! all the data shared by you.");
                     if (!confirmed) return;
+
+                    const confirmedAgain = window.confirm("Are you sure you want to delete this member in your Pic-Space? This will delete!! all the data shared by you.");
+                    if (!confirmedAgain) return;
 
                     //   alert("Deleting Pic-Space... It may take few time.")
 
-                    console.log(`Left space with workspace id: ${card.id}}`);
+                    // console.log(`Left space with workspace id: ${active.id}}`);
 
                     try {
-                      const result = await axios.post("/api/leftWorkspace", {
-                        workspaceId: card.id,
-                        userId: session?.user.id
+                      const result = await axios.post("/api/deleteUser", {
+                        workspaceId: active.workspaceId,
+                        adminId: session?.user.id,
+                        userId: active.id
                       });
 
-                      console.log(result);
+                      // console.log(result);
                       if (result.data.status === 204) {
                         alert("Deleted sucessfully");
                         window.location.reload();

@@ -24,7 +24,7 @@ export default function CreateNewUser({ wSpaceId }: { wSpaceId: string }) {
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     
-    console.log(formDetail);
+    // console.log(formDetail);
     try {
       const result = await axios.post("/api/createMember", {
         name: formDetail.name,

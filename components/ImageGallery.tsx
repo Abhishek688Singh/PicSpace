@@ -97,14 +97,14 @@ const ImageGallery = ({ images }: Props) => {
                                         const confirmed = window.confirm("Are you sure you want to delete this image?");
                                         if (!confirmed) return;
 
-                                        console.log(`Delete image with public_id: ${public_id}`);
+                                        // console.log(`Delete image with public_id: ${public_id}`);
 
                                         try {
                                             const result = await axios.post("/api/deleteImage", {
                                                 public_id: public_id,
                                             });
 
-                                            console.log(result);
+                                            // console.log(result);
                                             if (result.data.status === 204 || result.status === 200) {
                                                 alert("deleted sucessfully");
                                                 setImageState((prev) => prev.filter((img) => img.public_id !== public_id));

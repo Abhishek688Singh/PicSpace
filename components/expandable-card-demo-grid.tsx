@@ -186,7 +186,7 @@ export default function ExpandableCardDemo({ cards }: { cards: Card[] }) {
                   const Uid = session?.user.id;
 
 
-                  console.log(`Delete space with workspace id: ${card.id}}`);
+                  // console.log(`Delete space with workspace id: ${card.id}}`);
 
                   try {
                     const result = await axios.post("/api/deleteWorkspace", {
@@ -194,7 +194,7 @@ export default function ExpandableCardDemo({ cards }: { cards: Card[] }) {
                       userId:Uid
                     });
 
-                    console.log(result);
+                    // console.log(result);
                     if (result.data.status === 204) {
                       alert("Deleted sucessfully");
                       window.location.reload();

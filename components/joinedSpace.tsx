@@ -183,7 +183,7 @@ export default function JoinedSpace({ cards }: { cards: Card[] }) {
 
                 //   alert("Deleting Pic-Space... It may take few time.")
             
-                  console.log(`Left space with workspace id: ${card.id}}`);
+                  // console.log(`Left space with workspace id: ${card.id}}`);
 
                   try {
                     const result = await axios.post("/api/leftWorkspace", {
@@ -192,7 +192,7 @@ export default function JoinedSpace({ cards }: { cards: Card[] }) {
                       friendId : null
                     });
 
-                    console.log(result);
+                    // console.log(result);
                     if (result.data.status === 204) {
                       alert("Deleted sucessfully");
                       window.location.reload();

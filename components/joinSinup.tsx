@@ -44,7 +44,7 @@ export function JoinWorkspace({ sessionDetail }: SessionType) {
                 friend_id: sessionDetail.user.id,
 
             });
-            console.log(result)
+            // console.log(result)
             if (result.data.status === 403) {
                alert("You are the admin of this space. You can't join it as a member.")
             }
