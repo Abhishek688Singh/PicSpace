@@ -33,7 +33,10 @@ export function S2ignupFormDemo() {
 
       if (res.data.status === 201) {
         window.location.href = "/login"; // or auto-login here if desired
-      } else if (res.data.status === 400) {
+      } else if (res.data.status === 401) {
+        alert("Invalid Email!! Check your email address.");
+        window.location.href = "/login";
+      }else if (res.data.status === 400) {
         alert("You are alrady registered. Try to login.");
         window.location.href = "/login";
       }
