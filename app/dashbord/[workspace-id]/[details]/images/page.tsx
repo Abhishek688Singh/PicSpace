@@ -5,15 +5,11 @@ import { redirect } from 'next/navigation';
 import ImageGallery from '@/components/ImageGallery';
 import { pool } from '@/lib/db';
 
-
-type PageProps = {
-  params: {
-    'workspace-id': string;
-    details: string;
-  };
-};
-
-export default async function Page({ params }: PageProps) {
+export default async function Page({
+  params,
+}: {
+  params: { 'workspace-id': string; details: string };
+}) {
   const workspaceId = params['workspace-id'];
   const memberFriendId = params.details;
 
@@ -33,12 +29,10 @@ export default async function Page({ params }: PageProps) {
 
   return (
     <div className="flex flex-col items-center pt-[150] text-white h-[100vh]">
-      {/* image uploading component */}
       <Images workspaceId={workspaceId} memberFriendId={memberFriendId} />
 
       <hr className="w-[90%] border-[1px] bg-amber-50" />
 
-      {/* IMAGE VIEWING COMPONENT */}
       <h1 className="text-2xl font-bold text-center mt-6">Shared by Me :</h1>
 
       {publicIds.length === 0 ? (
