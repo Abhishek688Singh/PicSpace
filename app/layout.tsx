@@ -5,7 +5,8 @@ import { NavbarDemo } from "@/components/navbar";
 import { SessionProvider } from "next-auth/react";
 import FeedbackOptions from "../components/FeedbackOptions";
 import Footer from "@/components/footer";
-
+import { Analytics } from "@vercel/analytics/next"
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 
 const geistSans = Geist({
@@ -40,12 +41,14 @@ export default function RootLayout({
           <SessionProvider>
             <NavbarDemo />
           </SessionProvider>
-<FeedbackOptions />
+          <FeedbackOptions />
 
         </div>{children}
 
-<Footer />
-        
+        <Footer />
+        <Analytics />
+        <SpeedInsights />
+
       </body>
     </html>
   );
