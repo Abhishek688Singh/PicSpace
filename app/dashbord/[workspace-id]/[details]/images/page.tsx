@@ -5,6 +5,7 @@ import { redirect } from 'next/navigation';
 import ImageGallery from '@/components/ImageGallery';
 import { pool } from '@/lib/db';
 
+
 type PageProps = {
   params: {
     'workspace-id': string;
