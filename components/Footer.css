@@ -1,0 +1,11 @@
+.footer-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Ensures full height so footer can stick */
+}
+
+.footer-container {
+  background-color: #f8f9fa;
+  margin-top: auto; /* Pushes footer to bottom */
+  padding: 1rem 0;
+}

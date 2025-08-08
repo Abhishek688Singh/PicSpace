@@ -4,6 +4,7 @@ import "./globals.css";
 import { NavbarDemo } from "@/components/navbar";
 import { SessionProvider } from "next-auth/react";
 import FeedbackOptions from "../components/FeedbackOptions";
+import Footer from "@/components/footer";
 
 
 
@@ -40,9 +41,10 @@ export default function RootLayout({
             <NavbarDemo />
           </SessionProvider>
 <FeedbackOptions />
+
         </div>{children}
 
-
+<Footer />
         
       </body>
     </html>
