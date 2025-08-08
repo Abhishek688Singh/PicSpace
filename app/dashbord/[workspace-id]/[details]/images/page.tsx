@@ -35,6 +35,7 @@ export default async function Page({
 
       <h1 className="text-2xl font-bold text-center mt-6">Shared by Me :</h1>
 
+      
       {publicIds.length === 0 ? (
         <div className="flex flex-col items-center pt-[100] text-bold text-teal-100 text-4xl">
           <h1>NO Image Shared</h1>
