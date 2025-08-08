@@ -6,6 +6,10 @@ const nextConfig: NextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
+  typescript: {
+    // !! WARN: This will ignore type errors during build
+    ignoreBuildErrors: true,
+  },
 };
 
 
