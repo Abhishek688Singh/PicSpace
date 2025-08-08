@@ -22,7 +22,7 @@ export async function POST(req: Request) {
 
     const res = await axios.get(KICKBOX_URL);
     // console.log(res)
-    const { result, reason } = res;
+    const { result, reason } = res.data;
 
     if (result !== "deliverable") return NextResponse.json({ message: reason, status: 401 })
     
