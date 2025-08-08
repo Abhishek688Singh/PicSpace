@@ -17,8 +17,7 @@ export function CanvasRevealEffectDemo() {
             containerClassName="bg-emerald-900"
           /></Link>
         </Card>
-        
-        
+                
         <Card title="Tap to join a Pic-Space" icon={<h1 className="text-4xl text-white font-bold ">Join Pic-space</h1>}>
           <Link href={"/join-workspace"}>
           <CanvasRevealEffect
