@@ -23,9 +23,25 @@ export async function POST(req: Request) {
     const res = await axios.get(KICKBOX_URL);
     // console.log(res)
     const { result, reason } = res.data;
+    // console.log(res.data);
 
-    if ((result !== "deliverable" && reason != "accepted_email")||(result !== "risky" && reason != "low_quality") ) return NextResponse.json({ message: reason, status: 401 })
-    
+    // const isDeliverableAndAccepted =
+    //     result === "deliverable" && reason === "accepted_email";
+
+    // const isRiskyAndLowQuality =
+    //     result === "risky" && reason === "low_quality";
+
+    // const isAllowedCombination = isDeliverableAndAccepted || isRiskyAndLowQuality;
+
+
+    if (
+        !(
+            (result === "deliverable" && reason === "accepted_email") ||
+            (result === "risky" && reason === "low_quality")
+        )
+    ) {
+        return NextResponse.json({ message: reason, status: 401 });
+    }
 
     try {
         const isUserPresent = await pool.query("SELECT * FROM users WHERE email = $1", [email]);

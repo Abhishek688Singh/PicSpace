@@ -45,7 +45,7 @@ export function SignupFormDemo() {
   return (
     <div className=" h-[100vh] flex flex-row items-center">
       <div style={{ border: "3px solid white" }} className="mx-auto w-full max-w-md rounded-xl bg-[#0f0f0f] p-6 md:p-8 shadow-lg">
-        <h2 className="text-2xl font-bold text-white">Welcome to Pic-Space</h2>
+        <h2 className="text-2xl font-bold text-white">Login to Pic-Space</h2>
         <p className="mt-2 text-sm text-gray-400">
           Log in to Pic-Space to manage your space and share your work privately.
         </p>

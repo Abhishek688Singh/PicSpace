@@ -1,5 +1,6 @@
 "use client"
 
+import { useSession } from 'next-auth/react';
 import React, { useState, useEffect } from 'react';
 
 // Intermediate Footer component (Tailwind CSS)
@@ -33,6 +34,8 @@ export default function Footer({
         linkedin: 'https://linkedin.com'
     }
 }) {
+
+    const { data: session } = useSession();
     const [email, setEmail] = useState('');
     const [status, setStatus] = useState(null); // null | 'success' | 'error' | 'loading'
     const [isDark, setIsDark] = useState(false);
@@ -166,17 +169,32 @@ export default function Footer({
                     </div>
 
                     {/* Sitemap columns */}
-                    {/* <div className="flex space-x-4 mt-2 sm:mt-0">
-                        <a href="/dashbord" className="hover:text-white text-sm">
-                            Dashboard
-                        </a>
-                        <a href="/join-workspace" className="hover:text-white text-sm">
-                            Join a Pic-Space
-                        </a>
-                        <a href="/" className="hover:text-white text-sm">
-                            Home
-                        </a>
-                    </div> */}
+                    {session?.user ? (
+                        <div className="flex space-x-4 mt-2 sm:mt-0">
+                            <a href="/dashbord" className="hover:text-white text-sm">
+                                Dashboard
+                            </a>
+                            <a href="/join-workspace" className="hover:text-white text-sm">
+                                Join a Pic-Space
+                            </a>
+                            <a href="/" className="hover:text-white text-sm">
+                                Home
+                            </a>
+                        </div>
+                    ) : (
+                        <div className="flex space-x-4 mt-2 sm:mt-0">
+                            <a href="/login" className="hover:text-white text-sm">
+                                Login
+                            </a>
+                            <a href="/join-workspace" className="hover:text-white text-sm">
+                                Join Pic-Space
+                            </a>
+                            <a href="/" className="hover:text-white text-sm">
+                                Home
+                            </a>
+                        </div>
+                    )}
+                    {/* */}
                 </div>
 
                 <div className="mt-10 border-t border-gray-200 dark:border-gray-800 pt-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4">

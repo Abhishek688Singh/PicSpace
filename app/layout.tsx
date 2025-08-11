@@ -44,8 +44,10 @@ export default function RootLayout({
           <FeedbackOptions />
 
         </div>{children}
+        <SessionProvider>
+          <Footer />
+        </SessionProvider>
 
-        <Footer />
         <Analytics />
         <SpeedInsights />
 
