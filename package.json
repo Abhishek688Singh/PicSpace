@@ -23,6 +23,7 @@
     "cloudinary": "^2.7.0",
     "clsx": "^2.1.1",
     "dns": "^0.2.2",
+    "framer-motion": "^12.23.12",
     "kickbox": "^2.0.4",
     "lucide-react": "^0.526.0",
     "motion": "^12.23.9",

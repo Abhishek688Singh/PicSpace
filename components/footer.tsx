@@ -78,7 +78,7 @@ export default function Footer({
     }
 
     return (
-        <footer className="bg-gray-900 dark:bg-gray-900 text-gray-200 dark:text-gray-200">
+        <footer className="bg-gray-900 dark:bg-gray-900 text-gray-200 relative dark:text-gray-200">
             <div className="max-w-7xl mx-auto px-6 py-12">
                 <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-8">
                     {/* Brand + tagline */}
@@ -166,7 +166,7 @@ export default function Footer({
                     </div>
 
                     {/* Sitemap columns */}
-                    <div className="flex space-x-4 mt-2 sm:mt-0">
+                    {/* <div className="flex space-x-4 mt-2 sm:mt-0">
                         <a href="/dashbord" className="hover:text-white text-sm">
                             Dashboard
                         </a>
@@ -176,7 +176,7 @@ export default function Footer({
                         <a href="/" className="hover:text-white text-sm">
                             Home
                         </a>
-                    </div>
+                    </div> */}
                 </div>
 
                 <div className="mt-10 border-t border-gray-200 dark:border-gray-800 pt-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4">

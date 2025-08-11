@@ -1,6 +1,6 @@
-import { NavbarDemo } from "@/components/navbar";
+import LandingPage from "@/components/Landing";
+import Navbar from "@/components/navbar2";
 import { VortexDemoSecond } from "@/components/vortex";
-import Image from "next/image";
 
 export default function Home() {
   return (
@@ -11,6 +11,8 @@ export default function Home() {
 
       <div>
         <VortexDemoSecond />
+{/* <Navbar /> */}
+        {/* <LandingPage /> */}
         {/* Other page content here */}
       </div>
     </section>

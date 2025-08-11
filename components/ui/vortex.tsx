@@ -194,10 +194,19 @@ export const Vortex = (props: VortexProps) => {
     canvas: HTMLCanvasElement,
     ctx?: CanvasRenderingContext2D,
   ) => {
-    const { innerWidth, innerHeight } = window;
+    const { innerWidth } = window;
+    const fullHeight = Math.max(
+      document.body.scrollHeight,
+      document.documentElement.scrollHeight,
+      document.body.offsetHeight,
+      document.documentElement.offsetHeight,
+      document.body.clientHeight,
+      document.documentElement.clientHeight
+    );
 
     canvas.width = innerWidth;
-    canvas.height = innerHeight;
+    canvas.height = fullHeight;
+
 
     center[0] = 0.5 * canvas.width;
     center[1] = 0.5 * canvas.height;

@@ -24,7 +24,7 @@ export async function POST(req: Request) {
     // console.log(res)
     const { result, reason } = res.data;
 
-    if (result !== "deliverable") return NextResponse.json({ message: reason, status: 401 })
+    if ((result !== "deliverable" && reason != "accepted_email")||(result !== "risky" && reason != "low_quality") ) return NextResponse.json({ message: reason, status: 401 })
     
 
     try {

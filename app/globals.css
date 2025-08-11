@@ -1,10 +1,14 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
-body{
-   background-color: #121111;;
-background-image: url("https://www.transparenttextures.com/patterns/cubes.png");
+body {
+  background-color: #121111;
+  background-image: url("https://www.transparenttextures.com/patterns/cubes.png");
+  background-attachment: fixed; /* makes it stay in place */
+  background-repeat: repeat;    /* tile pattern stays */
+  background-size: auto;        /* keep pattern original size */
 }
+
 
 
 @custom-variant dark (&:is(.dark *));
