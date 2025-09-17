@@ -3,10 +3,7 @@ import { pool } from "@/lib/db";
 import { NextResponse } from "next/server";
 import bcrypt from "bcrypt";
 import axios from "axios";
-// import {kickbox} from 'kickbox';
 
-
-// const kickbo = kickbox.client('live_3a0cbca73006944fd2454d767850baa7b73563d8b9a53f69700189d07b6e3e87').kickbox();
 
 export async function POST(req: Request) {
 
